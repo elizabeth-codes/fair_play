@@ -12,7 +12,10 @@ class User(db.Model):
     password = db.Column(db.String(40))
     name = db.Column(db.String(50))
 
-    def__repr__(self):
+    household = db.relationship("Household", back_populates = "users")
+    assigned_tasks = db.relationship("Assigned_Task", back_populates = "users")
+
+    def __repr__(self):
         return f"<User user_id={self.user_id} email={self.email}>"
 
 
@@ -25,7 +28,10 @@ class Household(db.Model):
     household_name = db.Column(db.String(50))
     #users: users are coming in from class User; do I recreate them here? confused.
 
-    def__repr__(self):
+    users = db.relationship("User", back_populates = "Household")
+    
+
+    def __repr__(self):
         return f"<Household_ID={self.household_id} Household_name={self.household_name}>"
 
 
@@ -37,7 +43,9 @@ class Task_Type(db.Model):
     task_name = db.Column(db.String(100))
     task_description = db.Column(db.String(5000))
 
-    def__repr__(self):
+    assigned_tasks = db.relationship("Assigned_Task", back_populates = "task_type")
+
+    def __repr__(self):
         return f"<task_name={self.task_name} task_id={self.task_id}>"
 
 
@@ -45,15 +53,19 @@ class Assigned_Task(db.Model):
     """a task that is done in a household, assigned to a user"""
     __tablename__ = "assigned_task"
 
-    task_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    #task_name = db.Column(db.String(100))
+    assigned_task_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+    assigned_task_name = db.Column(db.String(100))
     #task_description = db.Column(db.String(5000))
     was_completed_on_time = db.Column(db.Boolean)
-    assigned_to = db.Column(user)
-    #                 self.user^???
+    active_status = db.Column(db.Boolean, default = True)
+    assigned_to = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    task_id = db.Column(db.Integer, db.ForeignKey("tasks.task_id"))
 
-    def__repr__(self):
-        return f"<task_name={self.task_name} task_id={self.task_id}>"
+    users = db.relationship("User", back_populates = "assigned_tasks")
+    task_type = db.relationship("Task_Type", back_populates = "assigned_tasks")
+
+    def __repr__(self):
+        return f"<task_name={self.assigned_task_name} assigned_task_id={self.assigned_task_id}>"
 
 
 
