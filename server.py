@@ -39,9 +39,10 @@ def process_login():
     else:
         # Log in user by storing the user's email in session
         session["user_email"] = user.email
+        session["user_id"] = user.user_id
         flash(f"Welcome back, {user.email}!")
 
-        return redirect("/mypage")
+        return redirect(f"/mypage/{user.user.id}")
 
 
 @app.route("/about")
@@ -92,11 +93,26 @@ def submit():
     return 'Submitted!'
 
 
-@app.route("/mypage")
-def mypage():
+@app.route("/mypage/<int:user_id>")
+def mypage(user_id):
     """Show a user's personal page."""
-    print("asdfasdfasdfasdfasdf")
+    
+    # Check if a user is logged in
+    if "user_email" not in session:
+        flash("You need to login first.")
+        return redirect("/login_page")
+    
+    # Get the user object for the logged in user
+    logged_in_user = crud.get_user_by_email(session["user_email"])
+    
+    # If the logged in user's id doesn't match the user_id in the path, 
+    # redirect them to their own page
+    if logged_in_user.user_id != user_id:
+        flash("You can't access another user's page!")
+        return redirect(f"/mypage/{logged_in_user.user_id}")
+    
     return render_template("mypage.html")
+
 
 
 @app.route("/options")
