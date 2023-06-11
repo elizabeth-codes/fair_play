@@ -18,6 +18,13 @@ def homepage():
     return render_template("homepage.html")
 
 
+@app.route("/login")
+def log_in():
+    """Log In."""
+
+    return render_template("login.html")
+
+
 @app.route("/about")
 def about():
     """View about page."""
@@ -36,9 +43,22 @@ def show_calendar():
 def create_account():
     """Create an account."""
 
-    #users = crud.get_users()
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
 
-    return render_template("create_account.html", users=users)
+        # Check if a user already exists with that email
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            flash("A user already exists with that email.")
+        else:
+            new_user = User(email=email, password=password)
+            db.session.add(new_user)
+            db.session.commit()
+            flash("Account created! Please log in.")
+
+    return render_template("create_account.html")
 
 
 @app.route("/mypage")
