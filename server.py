@@ -41,7 +41,7 @@ def process_login():
         session["user_email"] = user.email
         flash(f"Welcome back, {user.email}!")
 
-    return redirect("/")
+        return redirect("/mypage")
 
 
 @app.route("/about")
@@ -95,8 +95,8 @@ def submit():
 @app.route("/mypage")
 def mypage():
     """Show a user's personal page."""
-
-    return redirect("/mypage.html")
+    print("asdfasdfasdfasdfasdf")
+    return render_template("mypage.html")
 
 
 @app.route("/options")
