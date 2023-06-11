@@ -1,14 +1,15 @@
 """Server for fair play app."""
 
 from flask import Flask, render_template, request, flash, session, redirect
-from model import connect_to_db, db
-#import crud
+from model import connect_to_db, db, User
+import crud
 
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
+#db.SQLAlchemy(app)
 
 
 @app.route("/")
@@ -18,11 +19,29 @@ def homepage():
     return render_template("homepage.html")
 
 
-@app.route("/login")
+@app.route("/login_page")
 def log_in():
     """Log In."""
 
-    return render_template("login.html")
+    return render_template("login_page.html")
+
+
+@app.route("/login", methods=["POST"])
+def process_login():
+    """Process user login."""
+
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_email(email)
+    if not user or user.password != password:
+        flash("The email or password you entered was incorrect.")
+    else:
+        # Log in user by storing the user's email in session
+        session["user_email"] = user.email
+        flash(f"Welcome back, {user.email}!")
+
+    return redirect("/")
 
 
 @app.route("/about")
@@ -61,6 +80,18 @@ def create_account():
     return render_template("create_account.html")
 
 
+@app.route('/submit', methods=['POST'])
+def submit():
+    username = request.form['username']
+    password = request.form['password']
+
+    user = User(username=username, password=password) # need to hash password for security?
+    db.session.add(user)
+    db.session.commit()
+
+    return 'Submitted!'
+
+
 @app.route("/mypage")
 def mypage():
     """Show a user's personal page."""
@@ -72,9 +103,7 @@ def mypage():
 def options():
     """Show details on a particular user."""
 
-    user = crud.get_user_by_id(user_id)
-
-    return render_template("user_details.html", user=user)
+    return render_template("options.html")
 
 
 # @app.route("/login", methods=["POST"])
