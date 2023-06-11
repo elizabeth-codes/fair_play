@@ -25,7 +25,7 @@ def get_user_by_id(user_id):
 
 def get_user_by_email(email):
     """Return a user by email."""
-
+    print("asdfasdfasdf")
     return User.query.filter(User.email == email).first()
 
 

@@ -11,6 +11,7 @@ class User(db.Model):
     email = db.Column(db.String(50), unique = True)
     password = db.Column(db.String(40))
     name = db.Column(db.String(50))
+    household_id = db.Column(db.Integer, db.ForeignKey("households.household_id"))
 
     household = db.relationship("Household", back_populates = "users")
     assigned_tasks = db.relationship("Assigned_Task", back_populates = "users")
@@ -27,8 +28,10 @@ class Household(db.Model):
     household_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     household_name = db.Column(db.String(50))
     #users: users are coming in from class User; do I recreate them here? confused.
+    #user = db.Column(db.String, db.ForeignKey("users.user_id"))
 
-    users = db.relationship("User", back_populates = "Household")
+    users = db.relationship("User", back_populates = "household")
+    
     
 
     def __repr__(self):
@@ -42,7 +45,7 @@ class Task_Type(db.Model):
     task_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     task_name = db.Column(db.String(100))
     task_description = db.Column(db.String(5000))
-
+    # assigned_task_id = db.Column(db.Integer, db.ForeignKey("assigned_task.assigned_task_id"))
     assigned_tasks = db.relationship("Assigned_Task", back_populates = "task_type")
 
     def __repr__(self):
@@ -54,12 +57,12 @@ class Assigned_Task(db.Model):
     __tablename__ = "assigned_task"
 
     assigned_task_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    assigned_task_name = db.Column(db.String(100))
-    #task_description = db.Column(db.String(5000))
+    # assigned_task_name = db.Column(db.String(100))
+    # task_description = db.Column(db.String(5000))
     was_completed_on_time = db.Column(db.Boolean)
     active_status = db.Column(db.Boolean, default = True)
     assigned_to = db.Column(db.Integer, db.ForeignKey("users.user_id"))
-    task_id = db.Column(db.Integer, db.ForeignKey("tasks.task_id"))
+    task_id = db.Column(db.Integer, db.ForeignKey("task_type.task_id"))
 
     users = db.relationship("User", back_populates = "assigned_tasks")
     task_type = db.relationship("Task_Type", back_populates = "assigned_tasks")
