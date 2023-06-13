@@ -32,8 +32,10 @@ def process_login():
 
     email = request.form.get("email")
     password = request.form.get("password")
-
+    print(email)
+    print(password)
     user = crud.get_user_by_email(email)
+    print(f"Selected User: {user}")
     if not user or user.password != password:
         flash("The email or password you entered was incorrect.")
     else:
@@ -42,7 +44,7 @@ def process_login():
         session["user_id"] = user.user_id
         flash(f"Welcome back, {user.email}!")
 
-        return redirect(f"/mypage/{user.user.id}")
+        return redirect(f"/mypage/{user.user_id}")
 
 
 @app.route("/about")
@@ -59,26 +61,29 @@ def show_calendar():
     return render_template("calendar.html")
 
 
-@app.route("/create_account")
+@app.route("/create_account", methods=['POST'])
 def create_account():
     """Create an account."""
+    email = request.form.get("email")
+    password = request.form.get("password")
 
-    if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
+    # Check if a user already exists with that email
+    user = User.query.filter_by(email=email).first()
 
-        # Check if a user already exists with that email
+    if user:
+        flash("A user already exists with that email.")
+    else:
+        new_user = User(email=email, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+        flash("Account created! Please log in.")
         user = User.query.filter_by(email=email).first()
+        print(f"asdfasdfasdfasdf: {user}")
+    return redirect("login_page")
 
-        if user:
-            flash("A user already exists with that email.")
-        else:
-            new_user = User(email=email, password=password)
-            db.session.add(new_user)
-            db.session.commit()
-            flash("Account created! Please log in.")
-
-    return render_template("create_account.html")
+@app.route("/account_creation_page")
+def account_creation_page():
+    return render_template("account_creation_page.html")
 
 
 @app.route('/submit', methods=['POST'])
@@ -104,13 +109,17 @@ def mypage(user_id):
     
     # Get the user object for the logged in user
     logged_in_user = crud.get_user_by_email(session["user_email"])
-    
+    print(f"logged in user{logged_in_user}")
     # If the logged in user's id doesn't match the user_id in the path, 
     # redirect them to their own page
     if logged_in_user.user_id != user_id:
         flash("You can't access another user's page!")
         return redirect(f"/mypage/{logged_in_user.user_id}")
     
+    my_tasks = crud.get_user_tasks(user_id)
+    print(f"Tasks: {my_tasks}")
+    print(f"Complete status for task {my_tasks[0].was_completed_on_time}")
+
     return render_template("mypage.html")
 
 
@@ -121,55 +130,6 @@ def options():
 
     return render_template("options.html")
 
-
-# @app.route("/login", methods=["POST"])
-# def process_login():
-#     """Process user login."""
-
-#     email = request.form.get("email")
-#     password = request.form.get("password")
-
-#     user = crud.get_user_by_email(email)
-#     if not user or user.password != password:
-#         flash("The email or password you entered was incorrect.")
-#     else:
-#         # Log in user by storing the user's email in session
-#         session["user_email"] = user.email
-#         flash(f"Welcome back, {user.email}!")
-
-#     return redirect("/")
-
-# @app.route("/update_rating", methods=["POST"])
-# def update_rating():
-#     rating_id = request.json["rating_id"]
-#     updated_score = request.json["updated_score"]
-#     crud.update_rating(rating_id, updated_score)
-#     db.session.commit()
-
-#     return "Success"
-
-# @app.route("/movies/<movie_id>/ratings", methods=["POST"])
-# def create_rating(movie_id):
-#     """Create a new rating for the movie."""
-
-#     logged_in_email = session.get("user_email")
-#     rating_score = request.form.get("rating")
-
-#     if logged_in_email is None:
-#         flash("You must log in to rate a movie.")
-#     elif not rating_score:
-#         flash("Error: you didn't select a score for your rating.")
-#     else:
-#         user = crud.get_user_by_email(logged_in_email)
-#         movie = crud.get_movie_by_id(movie_id)
-
-#         rating = crud.create_rating(user, movie, int(rating_score))
-#         db.session.add(rating)
-#         db.session.commit()
-
-#         flash(f"You rated this movie {rating_score} out of 5.")
-
-#     return redirect(f"/movies/{movie_id}")
 
 
 if __name__ == "__main__":

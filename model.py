@@ -57,8 +57,6 @@ class Assigned_Task(db.Model):
     __tablename__ = "assigned_task"
 
     assigned_task_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    # assigned_task_name = db.Column(db.String(100))
-    # task_description = db.Column(db.String(5000))
     was_completed_on_time = db.Column(db.Boolean)
     active_status = db.Column(db.Boolean, default = True)
     assigned_to = db.Column(db.Integer, db.ForeignKey("users.user_id"))
@@ -68,7 +66,7 @@ class Assigned_Task(db.Model):
     task_type = db.relationship("Task_Type", back_populates = "assigned_tasks")
 
     def __repr__(self):
-        return f"<task_name={self.assigned_task_name} assigned_task_id={self.assigned_task_id}>"
+        return f"<assigned_task_id={self.assigned_task_id}>"
 
 
 

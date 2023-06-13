@@ -3,13 +3,35 @@
 from model import db, User, Household, Task_Type, Assigned_Task, connect_to_db
 
 
-def create_user(email, password):
+def create_user(email, password, user_id):
     """Create and return a new user."""
 
-    user = User(email=email, password=password)
+    user = User(email=email, password=password, user_id=user_id)
 
     return user
 
+
+def create_assigned_task(assigned_task_id, was_on_time, active_status, assigned_to, task_id):
+    """Create a task for the assigned task table"""
+
+    assigned_task = Assigned_Task(
+        assigned_task_id=assigned_task_id, 
+        was_completed_on_time=was_on_time, 
+        active_status=active_status, 
+        assigned_to=assigned_to, 
+        task_id=task_id)
+    
+    return assigned_task
+
+
+def create_general_task(task_id, task_name, task_description):
+    """Create a task for the general tasks table."""
+    general_task = Task_Type(
+        task_id=task_id, 
+        task_name=task_name, 
+        task_description=task_description, 
+    )
+    return general_task
 
 def get_users():
     """Return all users."""
@@ -26,6 +48,10 @@ def get_user_by_id(user_id):
 def get_user_by_email(email):
     """Return a user by email."""
     return User.query.filter(User.email == email).first()
+
+def get_user_tasks(user_id):
+    """Return tasks that the user has done and has yet to do. """
+    return Assigned_Task.query.filter(Assigned_Task.assigned_to == user_id).all()
 
 
 if __name__ == "__main__":
