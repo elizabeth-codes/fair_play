@@ -3,10 +3,10 @@
 from model import db, User, Household, Task_Type, Assigned_Task, connect_to_db
 
 
-def create_user(email, password, user_id):
+def create_user(email, password):
     """Create and return a new user."""
 
-    user = User(email=email, password=password, user_id=user_id)
+    user = User(email=email, password=password)
 
     return user
 

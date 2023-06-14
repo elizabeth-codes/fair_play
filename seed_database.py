@@ -1,4 +1,5 @@
 #Create 10 users
+import datetime
 import os
 
 import crud
@@ -15,11 +16,11 @@ with server.app.app_context():
     for n in range(10):
         email = f"user{n}@test.com"
         password = "test"
-        user_id = n
-        user = crud.create_user(email, password, user_id)
+        #user_id = n
+        user = crud.create_user(email, password)
         model.db.session.add(user)
 
-    model.db.session.commit()
+        model.db.session.commit()
 
 
 

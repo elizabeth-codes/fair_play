@@ -59,6 +59,9 @@ class Assigned_Task(db.Model):
     assigned_task_id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     was_completed_on_time = db.Column(db.Boolean)
     active_status = db.Column(db.Boolean, default = True)
+    #frequency = db.
+    completed_date = db.Column(db.DateTime)
+    due_date = db.Column(db.DateTime)
     assigned_to = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     task_id = db.Column(db.Integer, db.ForeignKey("task_type.task_id"))
 
