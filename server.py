@@ -1,7 +1,7 @@
 """Server for fair play app."""
 
 from flask import Flask, render_template, request, flash, session, redirect
-from model import connect_to_db, db, User
+from model import connect_to_db, db, User, Task_Type
 import crud
 
 from jinja2 import StrictUndefined
@@ -38,6 +38,7 @@ def process_login():
     print(f"Selected User: {user}")
     if not user or user.password != password:
         flash("The email or password you entered was incorrect.")
+        return redirect("/login_page")
     else:
         # Log in user by storing the user's email in session
         session["user_email"] = user.email
@@ -119,6 +120,8 @@ def mypage(user_id):
     my_tasks = crud.get_user_tasks(user_id)
     print(f"Tasks: {my_tasks}")
     print(f"Complete status for task {my_tasks[0].was_completed_on_time}")
+    print(f"Completed date for task {my_tasks[0].completed_date}")
+
 
     return render_template("mypage.html")
 
@@ -130,6 +133,51 @@ def options():
 
     return render_template("options.html")
 
+
+@app.route("/create_task")
+def create_task():
+    """Render page to create a new task."""
+    return render_template("create_task.html")
+
+
+@app.route("/submit_task", methods=['POST'])
+def submit_task():
+    """Submit a new task."""
+
+    task_name = request.form['task_name']
+    task_description = request.form['task_description']
+
+    # Get the user's ID from the session
+    user_id = session.get('user_id')
+
+    # If the user is not logged in, redirect to the login page
+    if user_id is None:
+        flash("Please log in to create a task.")
+        return redirect("/login_page")
+
+    new_task = crud.create_general_task(task_name, task_description)
+    db.session.add(new_task)
+    db.session.commit()
+
+    flash("New task created!")
+    return redirect(f"/mypage/{user_id}")
+
+@app.route("/assign_tasks")
+def assign_tasks():
+    """View to assign new tasks."""
+
+    # Get the user's ID from the session
+    user_id = session.get('user_id')
+
+    # If the user is not logged in, redirect to the login page
+    if user_id is None:
+        flash("Please log in to assign tasks.")
+        return redirect("/login_page")
+
+    # Fetch all task types
+    all_task_types = crud.get_all_task_types()
+
+    return render_template("assign_tasks.html", task_types=all_task_types)
 
 
 if __name__ == "__main__":

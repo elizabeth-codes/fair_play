@@ -11,11 +11,13 @@ def create_user(email, password):
     return user
 
 
-def create_assigned_task(assigned_task_id, was_on_time, active_status, assigned_to, task_id):
+def create_assigned_task(was_on_time, active_status, assigned_to, completed_date, task_id):
     """Create a task for the assigned task table"""
 
     assigned_task = Assigned_Task(
-        assigned_task_id=assigned_task_id, 
+        #assigned_task_id=assigned_task_id, 
+        completed_date=completed_date,
+        users=User.query.filter(User.user_id == assigned_to).first(), 
         was_completed_on_time=was_on_time, 
         active_status=active_status, 
         assigned_to=assigned_to, 
@@ -24,11 +26,10 @@ def create_assigned_task(assigned_task_id, was_on_time, active_status, assigned_
     return assigned_task
 
 
-def create_general_task(task_id, task_name, task_description):
+def create_general_task(task_name, task_description):
     """Create a task for the general tasks table."""
-    general_task = Task_Type(
-        task_id=task_id, 
-        task_name=task_name, 
+    general_task = Task_Type( 
+        task_name=task_name,
         task_description=task_description, 
     )
     return general_task
@@ -52,6 +53,11 @@ def get_user_by_email(email):
 def get_user_tasks(user_id):
     """Return tasks that the user has done and has yet to do. """
     return Assigned_Task.query.filter(Assigned_Task.assigned_to == user_id).all()
+
+def get_all_task_types():
+    """Return all rows of task_type."""
+
+    return Task_Type.query.all()
 
 
 if __name__ == "__main__":

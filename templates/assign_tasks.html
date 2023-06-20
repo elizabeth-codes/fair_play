@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Tasks</title>
+</head>
+<body>
+    <h1>Assign a New Task</h1>
+    <h2>Available Task Types</h2>
+    <ul>
+        {% for task in task_types %}
+            <li>
+                <h2>{{ task.task_name }}</h2>
+                <p>{{ task.task_description }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
