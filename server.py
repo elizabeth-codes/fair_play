@@ -179,6 +179,52 @@ def assign_tasks():
 
     return render_template("assign_tasks.html", task_types=all_task_types)
 
+@app.route("/assign_task", methods=['POST'])
+def assign_task():
+    """Assign a task to a user."""
+
+    task_id = request.form.get('task_id')
+    user_id = session.get('user_id')
+
+    # You'll need to modify create_assigned_task to take a user_id as an argument
+    new_assigned_task = crud.create_assigned_task(user_id, task_id)
+    db.session.add(new_assigned_task)
+    db.session.commit()
+
+    flash("Task assigned!")
+    return redirect(f"/mypage/{user_id}")
+
+@app.route("/my_tasks")
+def view_my_tasks():
+    """View all tasks assigned to the current user."""
+
+    user_id = session.get('user_id')
+    # Get all tasks assigned to this user
+    tasks = crud.get_tasks_by_user_id(user_id)
+
+    # Render template with tasks
+    return render_template('my_tasks.html', tasks=tasks)
+
+@app.route('/mark_task_done', methods=['POST'])
+def mark_task_done():
+    """Mark a task as done."""
+
+    assigned_task_id = request.form.get('assigned_task_id')
+
+    # Get the task by its ID
+    task = crud.get_task_by_id(assigned_task_id)
+
+    # Mark the task as done
+    crud.mark_task_as_done(task)
+
+    # Redirect to the tasks page
+    return redirect('/my_tasks')
+
+
+
+
+
+
 
 if __name__ == "__main__":
     connect_to_db(app)

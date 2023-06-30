@@ -1,7 +1,7 @@
 """CRUD operations."""
 
 from model import db, User, Household, Task_Type, Assigned_Task, connect_to_db
-
+from datetime import datetime
 
 def create_user(email, password):
     """Create and return a new user."""
@@ -58,6 +58,35 @@ def get_all_task_types():
     """Return all rows of task_type."""
 
     return Task_Type.query.all()
+
+
+def create_assigned_task(user_id, task_id):
+    """Create and return a new assigned task."""
+
+    assigned_task = Assigned_Task(assigned_to=user_id, task_id=task_id, was_completed_on_time=False, active_status=True)
+    return assigned_task
+
+def get_tasks_by_user_id(user_id):
+    """Return all tasks for a user."""
+
+    return Assigned_Task.query.filter(Assigned_Task.assigned_to==user_id, Assigned_Task.completed_date==None).all()
+
+def get_task_by_id(assigned_task_id):
+    """Return a task given its ID."""
+
+    return Assigned_Task.query.get(assigned_task_id)
+
+
+
+def mark_task_as_done(task):
+    """Mark a task as done."""
+
+    # Set the completed date to the current date and time
+    task.completed_date = datetime.now()
+
+    # Save the change to the database
+    db.session.commit()
+
 
 
 if __name__ == "__main__":

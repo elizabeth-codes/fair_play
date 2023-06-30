@@ -11,6 +11,10 @@
             <li>
                 <h2>{{ task.task_name }}</h2>
                 <p>{{ task.task_description }}</p>
+                <form method="POST" action="/assign_task">
+                    <input type="hidden" name="task_id" value="{{ task.task_id }}">
+                    <input type="submit" value="I'll do it!">
+                </form>
             </li>
         {% endfor %}
     </ul>
