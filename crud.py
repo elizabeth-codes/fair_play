@@ -11,7 +11,7 @@ def create_user(email, password):
     return user
 
 
-def create_assigned_task(was_on_time, active_status, assigned_to, completed_date, task_id):
+def create_assigned_task(was_on_time, active_status, assigned_to, completed_date, task_id, due_date=None):
     """Create a task for the assigned task table"""
 
     assigned_task = Assigned_Task(
@@ -21,7 +21,9 @@ def create_assigned_task(was_on_time, active_status, assigned_to, completed_date
         was_completed_on_time=was_on_time, 
         active_status=active_status, 
         assigned_to=assigned_to, 
-        task_id=task_id)
+        task_id=task_id,
+        due_date=due_date
+        )
     
     return assigned_task
 
@@ -60,11 +62,11 @@ def get_all_task_types():
     return Task_Type.query.all()
 
 
-def create_assigned_task(user_id, task_id):
-    """Create and return a new assigned task."""
+#def create_assigned_task(user_id, task_id):
+#     """Create and return a new assigned task."""
 
-    assigned_task = Assigned_Task(assigned_to=user_id, task_id=task_id, was_completed_on_time=False, active_status=True)
-    return assigned_task
+#     assigned_task = Assigned_Task(assigned_to=user_id, task_id=task_id, was_completed_on_time=False, active_status=True)
+#     return assigned_task
 
 def get_tasks_by_user_id(user_id):
     """Return all tasks for a user."""

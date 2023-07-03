@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create New Task</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Create New Task{% endblock %}
+
+{% block body %}
     <form action="/submit_task" method="post">
         <label for="task_name">Task Name:</label><br>
         <input type="text" id="task_name" name="task_name" required><br>
@@ -11,5 +9,4 @@
         <textarea id="task_description" name="task_description" required></textarea><br>
         <input type="submit" value="Create Task">
     </form>
-</body>
-</html>
+{% endblock %}

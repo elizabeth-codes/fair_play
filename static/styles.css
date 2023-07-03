@@ -19,3 +19,48 @@ button {
     background-color: #dddddd;  
     color: rgb(0, 0, 0);  
 }
+
+/* h1, h2 {
+    display: block;
+    clear: both;
+} */
+
+li.task {
+    background: white;
+    border: 2px solid black;
+    padding: 20px;
+    transition: all 0.3s ease; /* animate the box-shadow */
+    list-style: none; 
+    margin: 1em 1em 1em 1em;
+  }
+  
+li.task:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* create a shadow when hovering */
+}
+
+li.task .task-name,
+li.task .task-description {
+  display: block; /* ensures each element starts on a new line */
+}
+  
+  li.task .task-name {
+    font-size: 1.5em; /* make the task name larger */
+    font-weight: bold; /* make the task name bold */
+  }
+  
+  li.task .task-description {
+    font-size: 1em; /* adjust size as needed */
+  }
+  
+  li.task form input[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    transition: all 0.3s ease; /* animate the box-shadow */
+  }
+  
+  li.task form input[type="submit"]:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* create a shadow when hovering */
+  }
+  

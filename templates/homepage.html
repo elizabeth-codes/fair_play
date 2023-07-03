@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Homepage</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    {% block body %}
-        <button onclick="location.href='/options'">Fair Play</button>
-    {% endblock %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Homepage{% endblock %}
+
+{% block body %}
+    <button onclick="location.href='/options'">Fair Play</button>
+{% endblock %}
+
+
+

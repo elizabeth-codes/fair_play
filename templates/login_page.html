@@ -1,7 +1,8 @@
-<html>
+{% extends 'base.html' %}
+{% block title %}Log In{% endblock %}
 
-
-<h2>Log In</h2>
+{% block body %}
+  <h2>Log In</h2>
   <form action="/login" method="POST">
     <p>
       Email <input type="text" name="email">
@@ -15,3 +16,6 @@
       <input type="submit">
     </p>
   </form>
+{% endblock %}
+
+

@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Task Assignment</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Task Assignment{% endblock %}
+
+{% block body %}
   <table>
     <thead>
       <tr>
@@ -79,5 +77,4 @@
       <!-- Repeat the above two rows for additional tasks -->
     </tbody>
   </table>
-</body>
-</html>
+{% endblock %}

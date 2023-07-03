@@ -184,10 +184,16 @@ def assign_task():
     """Assign a task to a user."""
 
     task_id = request.form.get('task_id')
+    due_date = request.form.get('due_date')
     user_id = session.get('user_id')
 
+    #initialize some fields
+    was_completed_on_time = None
+    active_status = True
+    completed_date = None
+
     # You'll need to modify create_assigned_task to take a user_id as an argument
-    new_assigned_task = crud.create_assigned_task(user_id, task_id)
+    new_assigned_task = crud.create_assigned_task(was_completed_on_time, active_status, user_id, completed_date, task_id, due_date)
     db.session.add(new_assigned_task)
     db.session.commit()
 

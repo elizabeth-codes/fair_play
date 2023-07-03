@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Tasks</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}My Tasks{% endblock %}
+
+{% block body %}
     <h1>My Tasks</h1>
     <ul>
         {% for task in tasks %}
-            <li>
-                <h2>{{ task.task_type.task_name }}</h2>
-                <p>{{ task.task_type.task_description }}</p>
+            <li class="task">
+                <span class="task-name">{{ task.task_type.task_name }}</span>
+                <span class="task-description">{{ task.task_type.task_description }}</span>
                 <form action="/mark_task_done" method="POST">
                     <input type="hidden" name="assigned_task_id" value="{{ task.assigned_task_id }}">
                     <input type="submit" value="Done!">
@@ -17,5 +15,7 @@
             </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
+
+
+

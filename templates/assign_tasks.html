@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Assign Tasks</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Assign Tasks{% endblock %}
+
+{% block body %}
     <h1>Assign a New Task</h1>
     <h2>Available Task Types</h2>
     <ul>
         {% for task in task_types %}
-            <li>
-                <h2>{{ task.task_name }}</h2>
-                <p>{{ task.task_description }}</p>
+            <li class="task">
+                <span class="task-name">{{ task.task_name }}</span>
+                <span class="task-description">{{ task.task_description }}</span>
                 <form method="POST" action="/assign_task">
                     <input type="hidden" name="task_id" value="{{ task.task_id }}">
+                    <label for="due_date">Due Date:</label><br>
+                    <input type="date" id="due_date" name="due_date"><br>
                     <input type="submit" value="I'll do it!">
                 </form>
             </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
+
+
