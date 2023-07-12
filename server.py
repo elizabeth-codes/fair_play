@@ -187,6 +187,10 @@ def assign_task():
     due_date = request.form.get('due_date')
     user_id = session.get('user_id')
 
+    if due_date == '':
+        flash("Please choose a date.")
+        return redirect('/assign_tasks')
+
     #initialize some fields
     was_completed_on_time = None
     active_status = True

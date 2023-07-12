@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Options{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='options.css') }}">
+{% endblock %}
+
+
 {% block body %}
   <nav>
     <ul>

@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Log In{% endblock %}
 
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='login_page.css') }}">
+{% endblock %}
+
+
 {% block body %}
+<div class="login-container"></div>
   <h2>Log In</h2>
   <form action="/login" method="POST">
     <p>
@@ -16,6 +22,7 @@
       <input type="submit">
     </p>
   </form>
+</div>
 {% endblock %}
 
 

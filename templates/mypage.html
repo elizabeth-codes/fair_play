@@ -2,22 +2,24 @@
 {% block title %}My Page{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/mypage.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='mypage.css') }}">
 {% endblock %}
 
 {% block body %}
   <div class="sidebar">
-    <ul>
-      <a href="/my_tasks">My Tasks</a>
-      <li><a href="#">My Household</a></li>
-      <li><a href="/assign_tasks">Assign Tasks</a></li>
-      <li><a href="/create_task">Create New Task</a></li> <!-- Add this line -->
+    <ul class="list-group">
+      <li class="list-group-item"><a href="/my_tasks">My Tasks</a></li>
+      <li class="list-group-item"><a href="#">My Household</a></li>
+      <li class="list-group-item"><a href="/assign_tasks">Assign Tasks</a></li>
+      <li class="list-group-item"><a href="/create_task">Create New Task</a></li> <!-- Add this line -->
     </ul>
   </div>
 
   <div class="content">
-    <img src="Calendar.png" alt="Calendar">
-    <img src="graph.png" alt="Graph">
+    <img class="calendar" img src="/static/Calendar.png" alt="Calendar">
+  </div>
+  <div class="content">
+    <img class="graph" img src="/static/graph.png" alt="Graph">
   </div>
 {% endblock %}
 

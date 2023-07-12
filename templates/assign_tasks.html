@@ -12,12 +12,22 @@
                 <form method="POST" action="/assign_task">
                     <input type="hidden" name="task_id" value="{{ task.task_id }}">
                     <label for="due_date">Due Date:</label><br>
+                    <form method="POST" action="/assign_task" onsubmit="return checkDate(this);">
                     <input type="date" id="due_date" name="due_date"><br>
                     <input type="submit" value="I'll do it!">
                 </form>
             </li>
         {% endfor %}
     </ul>
+    <script>
+        function checkDate(form) {
+            if (form.due_date.value === '') {
+                alert('Please choose a date');
+                return false;
+            }
+            return true;
+        }
+    </script>
 {% endblock %}
 
 

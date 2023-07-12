@@ -1,22 +1,51 @@
 body {
     display: flex;
-  }
-  .sidebar {
-    width: 200px;
-    background-color: #f2f2f2;
-  }
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  .sidebar li {
-    margin-bottom: 10px;
-  }
-  .content {
-    flex-grow: 1;
-    text-align: center;
-  }
-  .content img {
-    max-width: 100%;
-    max-height: 100%;
-  }
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+    color: white;
+}
+
+
+
+.sidebar {
+  width: 200px;
+  background-color: transparent;
+  margin: 5px 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 5px;     
+}
+
+.sidebar li a {
+  text-decoration: none;
+}
+
+.content {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.content img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+
+img.calendar {
+  width: 700px; /*can adjust this value to get the size wanted */
+  height: auto; /* maintain the image's aspect ratio */
+}
+
+img.graph {
+width: 150px; /* adjust this value to get the size wanted */
+height: auto; /*  maintain the image's aspect ratio */
+}
