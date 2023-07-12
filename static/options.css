@@ -1,0 +1,18 @@
+ul li a:link,
+ul li a:visited {
+    color: white !important;
+    font-size: 120px;
+}
+
+body {
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+    color: white;
+}
+
+
+@font-face {
+    font-family: 'Bacasime Antique';
+    src: url('/static/BacasimeAntique-Regular.ttf');
+}
+
+

@@ -1,0 +1,23 @@
+body {
+    background-image: url('./scales1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+@font-face {
+    font-family: 'Bacasime Antique';
+    src: url('/static/BacasimeAntique-Regular.ttf');
+}
+
+body {
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+}
+
+button {
+    background-color: transparent;
+    color: white;
+    font-size: 12em;
+    font-weight: bold;
+    border: none;
+}

@@ -1,0 +1,41 @@
+ul li a:link,
+ul li a:visited {
+    color: white !important;
+    font-size: 120px;
+}
+
+body {
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+    color: white;
+}
+
+
+.login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Take the full viewport height */
+}
+
+h2 {
+    width: 50%;
+    text-align: center;
+    font-size: 120px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+form {
+    width: 50%;
+    text-align: center;
+    font-size: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+
+
+@font-face {
+    font-family: 'Bacasime Antique';
+    src: url('/static/BacasimeAntique-Regular.ttf');
+}
