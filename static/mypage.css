@@ -43,9 +43,11 @@ body {
 img.calendar {
   width: 700px; /*can adjust this value to get the size wanted */
   height: auto; /* maintain the image's aspect ratio */
+  border-radius: 5px;
 }
 
 img.graph {
 width: 150px; /* adjust this value to get the size wanted */
 height: auto; /*  maintain the image's aspect ratio */
+border-radius: 5px;
 }
