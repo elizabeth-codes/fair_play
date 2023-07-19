@@ -2,14 +2,19 @@ body {
     display: flex;
     font-family: 'Bacasime Antique', Fallback, sans-serif;
     color: white;
+    justify-content: space-between; /* This will ensure that the sidebar and content-container are spaced out. */
+    width: 100%;
 }
 
 
 
 .sidebar {
-  width: 200px;
+  width: 33.33%;
   background-color: transparent;
   margin: 5px 10px;
+  display: flex; /* Adding flex to center its content vertically */
+  align-items: center; /* Vertically center the content in the sidebar */
+  justify-content: center; 
 }
 
 .sidebar ul {
@@ -44,10 +49,21 @@ img.calendar {
   width: 700px; /*can adjust this value to get the size wanted */
   height: auto; /* maintain the image's aspect ratio */
   border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 img.graph {
-width: 150px; /* adjust this value to get the size wanted */
+  width: 700px; /* adjust this value to get the size wanted */
 height: auto; /*  maintain the image's aspect ratio */
 border-radius: 5px;
 }
+
+.content-container {
+  width: 66.67%; /* Remaining two-thirds of the container's width */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center content horizontally in the container */
+  justify-content: center; 
+}
+
