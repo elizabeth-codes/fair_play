@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'Bacasime Antique';
+    src: url('/static/BacasimeAntique-Regular.ttf');
+}
+
+body {
+    color: white;
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+    display: flex;
+    justify-content: space-around;
+}
+
+.header-container, .form-container {
+    width: 50%; /* each takes up half the page width */
+    text-align: center; /* center the content within them */
+    display: flex;
+    flex-direction: column; /* stack child elements vertically */
+    justify-content: center; /* center child elements vertically within the container */
+    height: 100vh; /* take up the full viewport height */
+}
+
+form {
+    align-items: center;
+    font-size: 24pt;
+    transition: box-shadow 0.3s ease; /* This smooths the transition when the shadow appears/disappears */
+
+}
+
+input[type="text"], textarea {
+    transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+    /* Any other styling for your input boxes */
+}
+
+input[type="text"]:hover, textarea:hover {
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.4); /* Shadow effect */
+}
+
+
+input[type="submit"] {
+    transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+    /* Add other styling here if needed */
+}
+
+input[type="submit"]:hover {
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.4); /* Shadow effect */
+}
+
+
+form label, 
+form input, 
+form textarea {
+    margin-bottom: 20px; /* You can adjust this value as needed */
+}
+
+
+p{
+    font-size: 4em;
+}
+
+.shimmer-text {
+    font-size: 50px; /* Adjust as necessary */
+    color: white; /* Text color */
+    position: relative;
+    overflow: hidden;
+    display: inline-block; /* So the background size fits the text */
+}
+
+.shimmer-text:hover {
+    background: linear-gradient(90deg, #333, #fff, #333);
+    background-size: 200% auto; /* Double the width to allow shifting */
+    color: transparent;
+    animation: shimmer 1.5s infinite; /* Adjust time as necessary */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Needed for the clip */
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0; /* Starts off the screen */
+    }
+    100% {
+        background-position: 200% 0; /* Ends off the screen */
+    }
+}
