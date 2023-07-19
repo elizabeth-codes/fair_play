@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Bacasime Antique';
+    src: url('/static/BacasimeAntique-Regular.ttf');
+}
+
+h1 {
+    display: flex;
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 8em;
+}
+
+.task-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+    color: black
+}
+
+li {
+    width: 100%; /* This can be adjusted, depending on the number of items per row and the space between them */
+    height: 80%;
+    font: black
+    border-radius: 20px;
+    transition: box-shadow 0.9 ease;
+
+}
+
+li:hover {
+    /* Apply a box-shadow on hover. Adjust these values to achieve your desired effect */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+}

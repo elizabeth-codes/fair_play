@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Bacasime Antique';
+    src: url('/static/BacasimeAntique-Regular.ttf');
+}
+
+
+
+h1 {
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+    color: white;
+    font-size: 10em;
+    background-color: rgba(25, 146, 144, 0.885);
+
+}
+
+p {
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+    color: black;
+    font-size: 1.4em;
+    background-color:rgba(25, 146, 144, 0.885);
+}
