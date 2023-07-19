@@ -4,9 +4,52 @@
     src: url('/static/BacasimeAntique-Regular.ttf');
 }
 
-body{
-    color: white
+h1{
+    color: white;
+    font-size: 10em;
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+}
+
+h2{
+    color: white;
+    font-size: 3em;
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+}
+
+p{
+    color: white;
+    font-size: 2em;
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+}
+
+form input[type="submit"] {
+    display: block;         /* Make the submit button a block element */
+    margin: 20px auto 0;   /* Center it horizontally with automatic side margins */
 }
 
 
+.account-container {
+    display: flex;
+    background-color: rgba(186, 196, 196, 0.885);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* This will take the full height of the viewport */
+    width: 50%; /* This will take half the width of its parent element (i.e., the body) */
+    position: absolute; /* This will allow you to position the container using top, right, bottom, left properties */
+    left: 50%; /* Position it starting at the midpoint of the viewport */
+    top: 0; /* Position it at the top edge of the viewport */
+}
 
+.greeting-container {
+    display: flex;
+    background-color: rgba(25, 146, 144, 0.885);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* This will take the full height of the viewport */
+    width: 50%; /* This will take half the width of its parent element (i.e., the body) */
+    position: absolute; /* This will allow you to position the container using top, right, bottom, left properties */
+    right: 50%; /* Position it starting at the midpoint of the viewport */
+    top: 0; 
+}

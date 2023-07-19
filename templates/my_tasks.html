@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}My Tasks{% endblock %}
 
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='my_tasks.css') }}">
+{% endblock %}
+
 {% block body %}
     <h1>My Tasks</h1>
     <ul>
@@ -10,7 +14,7 @@
                 <span class="task-description">{{ task.task_type.task_description }}</span>
                 <form action="/mark_task_done" method="POST">
                     <input type="hidden" name="assigned_task_id" value="{{ task.assigned_task_id }}">
-                    <input type="submit" value="Done!">
+                    <input type="submit" value="Done! ✅">
                 </form>
             </li>
         {% endfor %}
