@@ -12,6 +12,7 @@ body {
 
 body {
     font-family: 'Bacasime Antique', Fallback, sans-serif;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); 
 }
 
 button {
@@ -20,4 +21,5 @@ button {
     font-size: 12em;
     font-weight: bold;
     border: none;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); 
 }

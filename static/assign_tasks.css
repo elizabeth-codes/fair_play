@@ -1,10 +1,24 @@
-
+@font-face {
+    font-family: 'Bacasime Antique';
+    src: url('/static/BacasimeAntique-Regular.ttf');
+}
 
 body {
     display: flex;
     font-family: 'Bacasime Antique', Fallback, sans-serif;
     color: white;
     margin-bottom: 10px;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); 
+}
+
+h1{
+    font-size: 5em;
+    text-align: center;
+}
+
+h2{
+    font-size: 5em;
+    text-align: center;
 }
 
 .task-section {
@@ -25,3 +39,22 @@ li {
     height: 80%;
     font: black
 }
+
+
+.card {
+    width: 240px;  /* Adjust this value to your desired card width */
+    height: 320px; /* Adjust this value to your desired card height */
+    padding: 20px; /* Some padding to ensure content doesn't touch the edges */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Optional: adds a slight shadow to the card */
+    border-radius: 10px; /* Optional: rounds the corners of the card */
+    background-color: #f5f5f5; /* A light gray background to differentiate the card */
+    box-sizing: border-box; /* Makes sure that padding and border are included in the card's dimensions */
+    margin: 10px; /* Space between cards */
+    display: flex; 
+    flex-direction: column; /* To align card content vertically */
+    justify-content: space-between;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.9); /* Adjust to your preference */
+    transition: box-shadow 0.3s ease-out; 
+}
+
+

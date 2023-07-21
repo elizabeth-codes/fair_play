@@ -9,6 +9,7 @@ h1 {
     color: white;
     margin-bottom: 10px;
     font-size: 8em;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); 
 }
 
 .task-section {
@@ -21,15 +22,18 @@ ul {
     display: flex;
     flex-wrap: wrap; 
     justify-content: space-around; 
-    color: black
+    color: black;
+    font-family: 'Bacasime Antique', Fallback, sans-serif;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); 
 }
 
 li {
     width: 100%; /* This can be adjusted, depending on the number of items per row and the space between them */
     height: 80%;
-    font: black
+    font: black;
     border-radius: 20px;
     transition: box-shadow 0.9 ease;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); 
 
 }
 

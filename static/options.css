@@ -7,6 +7,7 @@ ul li a:visited {
 body {
     font-family: 'Bacasime Antique', Fallback, sans-serif;
     color: white;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8); 
 }
 
 
